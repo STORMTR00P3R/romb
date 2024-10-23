@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="script.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box" class="box">
+        <div class="col">
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell">
+                <img class="pac" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Pacman.svg/1200px-Pacman.svg.png" alt="pac" id="pac" height="50px">
+            </div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+        </div>
+    </div>
+    <script>
+        // var col = document.createElement("div");
+        var box = document.getElementById("box");
+        // var cell = document.createElement("div");
+        // col.classList.add("col");
+        // cell.classList.add("cell");
+        // console.log(col)
+        // box.appendChild(col);
+        // col.appendChild(cell);
+        for (let i = 0; i < 10; i++) { 
+            let col = document.createElement("div");
+            col.classList.add("col");
+            box.appendChild(col);
+            for (let j = 0; j < 10; j++) {
+                let cell = document.createElement("div");
+                cell.classList.add("cell");
+                col.appendChild(cell);
+            }
+        }
+    </script>
+</body>
+</html>
