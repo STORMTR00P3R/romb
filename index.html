@@ -12,24 +12,16 @@
 
 <body>
     <div id="box" class="box">
-        <div class="col">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell">
-                <img class="pac" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Pacman.svg/1200px-Pacman.svg.png" alt="pac" id="pac" height="50px">
-            </div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-        </div>
     </div>
+    <button onclick="f()">forward</button>
+    <button onclick="r()">rotate</button>
     <script>
         // var col = document.createElement("div");
         var box = document.getElementById("box");
+        let img = document.createElement("img");
+        let pos = window.getComputedStyle(img);
+        img.style.position = "relative";
+        
         // var cell = document.createElement("div");
         // col.classList.add("col");
         // cell.classList.add("cell");
@@ -44,7 +36,70 @@
                 let cell = document.createElement("div");
                 cell.classList.add("cell");
                 col.appendChild(cell);
+                if(i == 0 && j == 0) {
+                    cell.style.position = "relative"
+                    img.classList.add("img");
+                    img.id = "i"
+                    cell.appendChild(img);
+                    img.src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Pacman.svg/1200px-Pacman.svg.png";
+                    img.style.height="100%";
+                    img.style.width="100%";
+                }
             }
+        }
+        var imageOffsetY = 0
+        var imageOffsetX = 0
+        function r() {
+            console.log("r");
+            let rot = pos.getPropertyValue("rotate");
+            if(rot == "none" || rot == "0deg") {
+                img.style.rotate = "90deg";
+            } else if(rot == "90deg") {
+                img.style.rotate = "180deg";
+            } else if(rot == "180deg") {
+                img.style.rotate = "270deg";
+            } else if(rot == "270deg") {
+                img.style.rotate = "0deg";
+            }
+        }
+
+        document.getElementById("i").style.rotate = "0deg";
+        function f() {
+            console.log("*******")
+            if(document.getElementById("i").style.rotate == "0deg") {
+                imageOffsetX += 60
+                document.getElementById("i").style.left = imageOffsetX + "px";
+                console.log(imageOffsetX)
+                console.log(imageOffsetY)
+            } if(document.getElementById("i").style.rotate == "90deg") {
+                imageOffsetY -= 60
+                document.getElementById("i").style.bottom = imageOffsetY + "px";
+                console.log(imageOffsetX)
+                console.log(imageOffsetY)
+            } if(document.getElementById("i").style.rotate == "180deg") {
+                imageOffsetX -= 60
+                document.getElementById("i").style.left = imageOffsetX + "px";
+                console.log(imageOffsetX)
+                console.log(imageOffsetY)
+            } if(document.getElementById("i").style.rotate == "270deg") {
+                imageOffsetY += 60
+                document.getElementById("i").style.bottom = imageOffsetY + "px";
+                console.log(imageOffsetX)
+                console.log(imageOffsetY)
+            }
+            if(imageOffsetX >= 540 && (img.style.rotate == "0deg" || img.style.rotate == "none")) {
+                img.style.rotate = "90deg";
+            }
+            if(imageOffsetY == -540 && img.style.rotate == "90deg")  {
+                img.style.rotate = "180deg";
+            }
+            if(imageOffsetX == 0 && img.style.rotate == "180deg") {
+                img.style.rotate = "270deg";
+            }
+            if(imageOffsetY == 0 && img.style.rotate == "270deg") {
+                img.style.rotate = "0deg";
+            }
+            console.log(imageOffsetX)
         }
     </script>
 </body>
